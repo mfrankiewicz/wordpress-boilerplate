@@ -1,0 +1,60 @@
+{
+  "name": "mfrankiewicz/wordpress-boilerplate",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Michał Frankiewicz",
+      "email": "michal@frankiewicz.me"
+    }
+  ],
+  "minimum-stability": "stable",
+  "config": {
+    "sort-packages": true
+  },
+  "require": {
+    "johnpbloch/wordpress": "^5.0",
+    "koodimonni-language/pl_pl": "*",
+    "mfrankiewicz/example-theme": "@dev",
+    "symfony/dotenv": "^3.4"
+  },
+  "repositories": [
+      {
+          "type": "composer",
+          "url": "https://wp-languages.github.io"
+      },
+      {
+          "type": "path",
+          "url": "example-theme",
+          "options": {
+              "symlink": true
+          }
+      }
+  ],
+  "scripts": {
+    "post-update-cmd": [
+      "cp -r ./wordpress_files/. ./public/wp/"
+    ]
+  },
+  "extra": {
+    "wordpress-install-dir": "public/wp",
+    "installer-paths": {
+      "public/themes/{$name}/": [
+        "type:wordpress-theme"
+      ],
+      "public/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ]
+    },
+    "dropin-paths": {
+      "public/languages/": [
+        "vendor:koodimonni-language"
+      ],
+      "public/plugins/": [
+        "vendor:koodimonni-plugin-language"
+      ],
+      "public/themes/": [
+        "vendor:koodimonni-theme-language"
+      ]
+    }
+  }
+}

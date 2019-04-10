@@ -1,0 +1,33 @@
+version: '3'
+services:
+    web:
+        image: mfrankiewicz/php:7.2-apache
+        container_name: ${COMPOSE_PROJECT_NAME}-web
+        links:
+            - mariadb
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - .:/var/www/
+        working_dir: /var/www
+        environment:
+            APACHE_DOCUMENT_ROOT: /var/www/public
+    mariadb:
+        image: mariadb:10.0
+        container_name: ${COMPOSE_PROJECT_NAME}-mariadb
+        ports:
+            - 3306:3306
+        volumes:
+            - ./_tmp/mariadb:/var/lib/mysql
+        environment:
+            MYSQL_DATABASE: wordpress_boilerplate
+            MYSQL_ROOT_PASSWORD: password
+            TZ: Europe/Warsaw
+    composer:
+        image: mfrankiewicz/composer:7.2
+        container_name: ${COMPOSE_PROJECT_NAME}-composer
+        volumes:
+            - .:/app
+            - ~/.ssh:/root/.ssh
+            - ~/.composer:/root/composer

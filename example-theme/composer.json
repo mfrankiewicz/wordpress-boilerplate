@@ -1,0 +1,18 @@
+{
+    "name": "mfrankiewicz/example-theme",
+    "type": "wordpress-theme",
+    "version": "0.0.1",
+    "authors": [
+        {
+            "name": "Michał Frankiewicz",
+            "email": "michal@frankiewicz.me"
+        }
+    ],
+    "minimum-stability": "stable",
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "timber/timber": "^1.7"
+    }
+}
